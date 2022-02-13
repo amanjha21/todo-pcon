@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
+const PORT = process.env.PORT || 3000;
+require("dotenv").config();
 app.use(cors());
 //parser
 app.use(
@@ -11,10 +12,7 @@ app.use(
   })
 );
 const mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb+srv://project-webapp:<password>@webapp.niebb.mongodb.net/todo",
-  { useNewUrlParser: true }
-);
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
 
 mongoose.connection.on("connected", () => {
   console.log("Connected to database");
@@ -47,6 +45,6 @@ app.delete("/delete/:id", async (req, res) => {
   res.json(todos);
 });
 
-app.listen(4000, () => {
-  console.log("server started on port 4000");
+app.listen(PORT, () => {
+  console.log(`server started on port: ${PORT}`);
 });
