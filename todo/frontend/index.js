@@ -1,4 +1,4 @@
-let serverEndpoint = "http://localhost:4000/";
+let serverEndpoint = "https://pcon-todo.herokuapp.com/";
 // ui variables
 const form = document.querySelector(".form");
 
